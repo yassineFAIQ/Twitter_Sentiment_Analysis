@@ -3,7 +3,7 @@ from textblob import TextBlob
 import preprocessor as p
 import matplotlib.pyplot as plt
 
-
+'''
 print("Enter your consumer key")
 consumer_key = input()
 print("\nEnter your consumer secret ")
@@ -12,6 +12,11 @@ print("\nEnter your access token")
 access_token = input()
 print("\nEnter your access token secret")
 access_token_secret = input()
+'''
+consumer_key ="Rd2Luk2JoqvDYAOT6PA5EAkG2"
+consumer_secret="4mkt1YBGZSCBA0Doy4ZKdKpDlcwRS7hmzLpv7Besxl3Zw71nNU"
+access_token="945831943052120065-n0TBgYL3oMwwr6wScvAVOoyWSWXIc7u"
+access_token_secret="RSWdsnj0OeSqVkiaJCOcMeef1nBnb3dL9o90VWGGJro3i"
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -82,12 +87,14 @@ def get_sentiment():
     # finding average reaction
     polarity = polarity / nbTweet
     
-    # printing out data
-    print("How people are reacting on " + keyword + " by analyzing " + str(nbTweet) + " tweets.")
-    print()
     
+
+
+    
+
+
     #printing the average reaction
-    print("General Report: ")
+    print("General Result: ")
     if (polarity == 0):
         print("Neutral")
     elif (polarity > 0 and polarity <= 0.3):
@@ -102,20 +109,20 @@ def get_sentiment():
         print("Negative")
     elif (polarity > -1 and polarity <= -0.6):
         print("Strongly Negative")
-
-    
-    #printing the pourcentage of each reaction        
+        
+     #printing the pourcentage of each reaction        
     print()
-    print("Detailed Report: ")
-    print(str(positive) + "% people thought it was positive")
-    print(str(wpositive) + "% people thought it was weakly positive")
-    print(str(spositive) + "% people thought it was strongly positive")
-    print(str(negative) + "% people thought it was negative")
-    print(str(wnegative) + "% people thought it was weakly negative")
-    print(str(snegative) + "% people thought it was strongly negative")
-    print(str(neutral) + "% people thought it was neutral")
-  
-    plotPieChart(positive, wpositive, spositive, negative, wnegative, snegative, neutral, keyword, nbTweet)
+    print("Details: ")
+    print(str(positive) + "%  of tweets are positives")
+    print(str(wpositive) + "% of tweets are weakly positives")
+    print(str(spositive) + "% of tweets are strongly positives")
+    print(str(negative) + "% of tweets are negatives")
+    print(str(wnegative) + "% of tweets are negatives")
+    print(str(snegative) + "% of tweets are strongly negatives")
+    print(str(neutral) + "% of tweets are neutrals")
+    print()
+    
+    plotPie(positive, wpositive, spositive, negative, wnegative, snegative, neutral, keyword, nbTweet)
 
     
 #calculating the pourcentage
@@ -124,14 +131,14 @@ def percentage(part, whole):
     return format(temp, '.2f')
 
 #visualizing the results in a Pie plot
-def plotPieChart(positive, wpositive, spositive, negative, wnegative, snegative, neutral, keyword, nbTweet):
+def plotPie(positive, wpositive, spositive, negative, wnegative, snegative, neutral, keyword, nbTweet):
         labels = ['Positive [' + str(positive) + '%]', 'Weakly Positive [' + str(wpositive) + '%]','Strongly Positive [' + str(spositive) + '%]', 'Neutral [' + str(neutral) + '%]',
                   'Negative [' + str(negative) + '%]', 'Weakly Negative [' + str(wnegative) + '%]', 'Strongly Negative [' + str(snegative) + '%]']
         sizes = [positive, wpositive, spositive, neutral, negative, wnegative, snegative]
         colors = ['yellowgreen','lightgreen','darkgreen', 'gold', 'red','lightsalmon','darkred']
         patches, texts = plt.pie(sizes, colors=colors, startangle=90)
         plt.legend(patches, labels, loc="best")
-        plt.title('How people are reacting on ' + keyword + ' by analyzing ' + str(nbTweet) + ' Tweets.')
+        plt.title('Analyzing ' + str(nbTweet) + ' tweets contaiting the word  ' + keyword)
         plt.axis('equal')
         plt.tight_layout()
         plt.show()
@@ -141,4 +148,3 @@ if __name__=="__main__":
     
     get_sentiment()
         
-    
