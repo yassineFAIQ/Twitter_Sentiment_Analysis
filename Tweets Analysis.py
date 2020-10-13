@@ -3,7 +3,7 @@ from textblob import TextBlob
 import preprocessor as p
 import matplotlib.pyplot as plt
 
-'''
+
 print("Enter your consumer key")
 consumer_key = input()
 print("\nEnter your consumer secret ")
@@ -12,11 +12,8 @@ print("\nEnter your access token")
 access_token = input()
 print("\nEnter your access token secret")
 access_token_secret = input()
-'''
-consumer_key ="Rd2Luk2JoqvDYAOT6PA5EAkG2"
-consumer_secret="4mkt1YBGZSCBA0Doy4ZKdKpDlcwRS7hmzLpv7Besxl3Zw71nNU"
-access_token="945831943052120065-n0TBgYL3oMwwr6wScvAVOoyWSWXIc7u"
-access_token_secret="RSWdsnj0OeSqVkiaJCOcMeef1nBnb3dL9o90VWGGJro3i"
+
+
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
